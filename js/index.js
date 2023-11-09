@@ -1,9 +1,7 @@
-//Deliverable 1: 10min
-
 document.addEventListener("DOMContentLoaded", function() {
     fetchBooks();
 });
-//fetch books
+
 function fetchBooks(){
     fetch('http://localhost:3000/books')
     .then(resp => resp.json())
@@ -11,7 +9,7 @@ function fetchBooks(){
         createBooksList(booksArr);
     });
 };
-//render titles on dom
+
 function createBooksList(booksArr){
     let ul = document.getElementById("list");
     booksArr.map(bookObj => {
@@ -23,9 +21,6 @@ function createBooksList(booksArr){
     });
 };
 
-//when book  title is clicked, render it's info to DOM.
-
-//Deliverable 2: 18min
 function attachListener(bookObj, bookLi){
     let displayDiv = document.getElementById("show-panel");
     bookLi.addEventListener("click", ()=>{
@@ -41,7 +36,6 @@ function attachListener(bookObj, bookLi){
         p.textContent = bookObj.description;
         bookDiv.append(img, p);
         
-        //creates a div to put users in
         let userDiv = document.createElement("div");
         userDiv.id = "userDiv";
         bookDiv.appendChild(userDiv);
@@ -61,7 +55,6 @@ function attachListener(bookObj, bookLi){
     });
 };
 
-//Creates only the users who have liked the item
 function createUsers(usersArr){
     usersArr.forEach(userObj =>{
         let userLi = document.createElement("li");
@@ -70,9 +63,8 @@ function createUsers(usersArr){
         let userDiv = document.getElementById("userDiv");
         userDiv.appendChild(userLi);
     });
-}
+};
 
-//updates the users and returns the update suers
 function patchUsers (usersArr, bookId) {
     let newUser = {id: 1, username: "fluffy-bear"};
     usersArr.push(newUser);
